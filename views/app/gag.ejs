@@ -1,0 +1,111 @@
+<div class="row">
+    <div class="col-lg-8 col-md-7 col-sm-12">
+
+
+        <div class="profile">
+            <section class="profile-header">
+
+                <header>
+                    <h2><%=results.descripe%></h2>
+
+                    <p class="text-muted">
+                        <%results.tag.forEach(function (item) { %>
+                        <a href="/tag/<%=item%>"><%=item%></a>
+                        <%})%>
+                    </p>
+
+
+                </header>
+
+            </section>
+
+
+            <div class="" style="padding: 6px 0" >
+                <a href="/" class="text-muted" >1,678 points</a>
+                <a href="/" class="text-muted">56 comments</a>
+            </div>
+
+            <div class="" style="padding: 6px 0" >
+
+                <a  class="btn btn-light"><i class="fa fa-arrow-up"></i></a>
+                <a  class="btn btn-light"><i class="fa fa-arrow-down"></i></a>
+                <a  class="btn btn-light" href="#" role="button" id="shareMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-share"></i> Share</a>
+
+                <div class="dropdown-menu" aria-labelledby="shareMenu">
+                    <a class="dropdown-item" href="#">Facebook</a>
+                    <a class="dropdown-item" href="#">Twitter</a>
+                    <a class="dropdown-item" href="#">Email</a>
+                    <a class="dropdown-item" href="#">Google+</a>
+                    <a class="dropdown-item" href="#">Report</a>
+                </div>
+
+               <a href="/aftergag/<%=results._id%>" class="btn float-right">
+                   <div style="width:100px;display: block;padding-right: 12px;position: relative;">
+                    <span style="    padding: 0 8px 0 12px;
+    font-weight: bold;
+    height: 34px;
+    line-height: 34px;
+    display: block;
+    background-color: #ff3c1f;
+    color: #fff;
+    border-radius: 3px 0 0 3px;
+}">Next</span>
+                       <span style="position: absolute;
+    top: 0;
+    right: 0;
+    display: block;
+    width: 0;
+    height: 0;
+    border-top: 17px dashed transparent;
+    border-bottom: 17px dashed transparent;
+    border-left: 12px solid #ff3c1f;"></span></div>
+               </a>
+            </div>
+        </div>
+
+
+
+        <%if(results.imgUrl!=""){%>
+
+        <a href="/gag/<%=results._id%>" class="nounderline" >
+            <div class="post-view" style="width: 80%" >
+                <img class="card-img-1" style="width: 100%;"  src="<%=results.imgUrl%>" alt="Card image cap">
+
+            </div>
+        </a>
+        <%if(user!=null){%>
+        <button type="button" class="btn btn-sm btn-link " style="font-size: 12px;bottom: 10px;
+    position: absolute;
+    right: 10px;
+}" data-toggle="modal" data-target="#reportModal" >REPORT</button>
+        <%include ../layout/report.ejs%>
+
+        <%}%>
+
+
+
+        <div class="dropdown-divider"></div>
+        <% }else{%>
+
+        <div class="" >
+            <video class="card-img-1" controls poster="<%=results.videoUrl%>" loop>
+                <source src="<%=results.videoUrl%>" type="video/mp4">
+            </video>
+
+        </div>
+
+        <div class="dropdown-divider"></div>
+
+
+        <%}%>
+
+
+
+    </div>
+    <div class="col-lg-4 col-5 d-none d-lg-block "><%include ../layout/sidebarRight.ejs%></div>
+
+
+
+</div>
+

@@ -1,0 +1,96 @@
+<!-- Log In Modal -->
+<div class="modal fade" id="logInModal" tabindex="-1" role="dialog" aria-labelledby="logInModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content"  style="padding: 24px">
+            <div class="modal-header border-0">
+                <h1 class="modal-title" id="logInModal">Login</h1>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="padding: 0px">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="padding-top: 0px;">
+                <p class="text-muted">Connect with a social network</p>
+
+               <div style="margin:24px 0">
+                   <a href="/auth/facebook" class="btn btn-lg text-white " style="background-color: #3b5997;width: 48%;border-radius: 0" role="button">Facebook</a>
+                   <a href="/auth/google" class="btn btn-lg text-white " style="background-color: #dc4c28;width: 48%;border-radius: 0" role="button">Google+</a>
+
+               </div>
+                <div class="dropdown-divider"></div>
+                <p class="text-muted">Log in with your email address</p>
+
+                <form action="/auth/signin" method="post">
+                    <div class="form-group">
+                        <label for="email">Email address</label>
+                        <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Sign Up Modal -->
+<div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="signUpModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content"  style="padding: 24px">
+            <div class="modal-header border-0">
+                <h1 class="modal-title" id="signUpModal">Hey there!</h1>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="padding: 0px">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="padding-top: 0px;">
+                <p class="text-muted">9GAG is your best source for fun. Share anything you find interesting, get real responses from people all over the world, and discover what makes you laugh</p>
+
+                <div style="margin:24px 0">
+                    <a href="/auth/facebook" class="btn btn-lg text-white " style="background-color: #3b5997;width: 48%;border-radius: 0" role="button">Facebook</a>
+                    <a href="/auth/google" class="btn btn-lg text-white " style="background-color: #dc4c28;width: 48%;border-radius: 0" role="button">Google+</a>
+
+                </div>
+                <div class="dropdown-divider"></div>
+                <p class="text-muted">Sign up with your <a href="/" data-dismiss="modal" aria-label="Close" data-toggle="modal" data-target="#registerModal">Email Address</a></p>
+                <p class="text-muted">Have an account? <a href="/" data-dismiss="modal" aria-label="Close" data-toggle="modal" data-target="#logInModal">Login</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Register Modal -->
+<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content"  style="padding: 24px">
+            <div class="modal-header border-0">
+                <h1 class="modal-title" id="signUpModal">Become a member</h1>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="padding: 0px">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="padding-top: 0px;">
+                <form action="/auth/signup" method="post">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" class="form-control" name="name" placeholder="Full Name">
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="text" class="form-control" name="email" placeholder="Email Address">
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" class="form-control" name="password" placeholder="Password">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-sm">Sign up</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+

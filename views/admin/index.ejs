@@ -1,0 +1,91 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center  mb-4 border-bottom">
+    <h1 class="h2">Dashboard</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb" style="background: white;">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+
+
+<div class="">
+
+    <div class="row">
+        <a href="/admin/user" class="col-3">
+            <div class="card-admin text-black shadow " >
+                <div class="row">
+                    <div class="col-3 my-auto">
+                        <i class="fa fa-users fa-3x text-success"></i>
+                    </div>
+                    <div class="col-9 text-right">
+                        <h4><%=results.user%></h4>
+                        <h6>Total User</h6>
+                    </div>
+                </div>
+            </div>
+        </a>
+        <a href="/admin/post" class="col-3">
+            <div class="card-admin text-black shadow" >
+                <div class="row">
+                    <div class="col-3 my-auto">
+                        <i class="fa fa-crow fa-3x text-danger"></i>
+                    </div>
+                    <div class="col-9 text-right">
+                        <h4><%=results.post%></h4>
+                        <h6>Total Post</h6>
+                    </div>
+                </div>
+            </div>
+        </a>
+        <a href="/admin/tag" class="col-3">
+            <div class="card-admin text-black shadow" >
+                <div class=" row">
+                    <div class="col-3 my-auto">
+                        <i class="fa fa-tags fa-3x text-secondary"></i>
+                    </div>
+                    <div class="col-9 text-right">
+                        <h4><%=results.tag%></h4>
+                        <h6>Total Tags</h6>
+                    </div>
+                </div>
+            </div>
+        </a>
+        <a href="/admin/comment" class="col-3">
+            <div class="card-admin text-black shadow" >
+                <div class=" row">
+                    <div class="col-3 my-auto">
+                        <i class="fa fa-comments fa-3x text-warning"></i>
+                    </div>
+                    <div class="col-9 text-right">
+                        <h4><%=results.comment%></h4>
+                        <h6>Total Comment</h6>
+                    </div>
+                </div>
+            </div>
+        </a>
+        <a href="/admin/reportPost" class="col-3">
+
+
+            <div class="card-admin text-black shadow" >
+                <div class="row">
+                    <div class="col-3 my-auto">
+                        <i class="fa fa-flag fa-3x text-primary"></i>
+                    </div>
+                    <div class="col-9 text-right">
+                        <h4><%=results.reportPost%></h4>
+                        <h6>Total Report</h6>
+                    </div>
+                </div>
+            </div>
+        </a>
+
+
+
+
+
+    </div>
+</div>

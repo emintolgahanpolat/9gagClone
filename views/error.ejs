@@ -1,0 +1,51 @@
+<style>
+    body{background-color: #1b1e21}
+</style>
+
+<div class="container ">
+    <div class="jumbotron" style="text-align: center ;margin:  100px 0">
+
+        <h1 class="display-4"><%= status %></h1>
+        <p class="lead"><%= message %></p>
+        <div class="progress" style="height: 1px">
+            <div id="bar" class="progress-bar bg-info" role="progressbar" style="width: 100%"></div>
+        </div>
+
+        <br>
+
+        <p>Oops!!!</p>
+
+        <p class="lead">
+            <a class="btn btn-primary btn-lg" href="/" role="button">Goto Home <b><span
+                            id="kalan"></span></b></a>
+        </p>
+
+
+    </div>
+</div>
+<script>
+
+    var sure = 10; // kaç saniye bekletilecek
+    var saniye = document.getElementById("kalan").innerHTML = sure + 1;
+
+
+    function goster() {
+        window.location.assign("/");
+    }
+
+    function final() {
+        if (saniye != 1) {
+            saniye -= 1;
+            document.getElementById("bar").style.width = saniye * 10 + '%';
+            document.getElementById("kalan").innerHTML = saniye;
+        }
+
+        else {
+            goster();
+            return;
+        }
+        setTimeout("final()", 1000);
+    }
+
+    final();
+</script>

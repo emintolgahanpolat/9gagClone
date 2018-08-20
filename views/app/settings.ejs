@@ -1,0 +1,189 @@
+<div class="row" style="position: relative;
+    margin: 40px auto 0;">
+    <div class="col-4">
+        <div class="nav flex-column nav-pills nav-left" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+            <a class="nav-link active"  data-toggle="pill" href="#account" role="tab"  aria-selected="true">Account</a>
+            <a class="nav-link" data-toggle="pill" href="#password" role="tab" aria-selected="false">Password</a>
+            <a class="nav-link"  data-toggle="pill" href="#profile" role="tab" aria-selected="false">Profile</a>
+        </div>
+    </div>
+    <div class="col-8">
+        <div class="tab-content" id="v-pills-tabContent">
+            <div class="tab-pane fade show active" id="account" role="tabpanel" >
+                <h5>Account</h5>
+                <div>
+                    <form action="/settings/account" method="post">
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" class="form-control" id="username" name="username" value="<%=user.username%>">
+                            <small class="form-text text-muted">https://9gag.com/u/<%=user.username%></small>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email address</label>
+                            <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" value="<%=user.email%>">
+                            <small class="form-text text-muted">Email will not be displayed publicly</small>
+                        </div>
+                       <div class="form-group">
+                           <select class="form-control" style="width: auto">
+                               <option>On</option>
+                               <option>Off</option>
+                           </select>
+                       </div>
+
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </form>
+                </div>
+                <div style="padding: 10px 0;
+    margin-top: 20px;
+    overflow: hidden;">
+                    <a href="/settings/delete" onclick="return confirm('Are you sure delete account?')"> Delete my account</a>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="password" role="tabpanel" >
+                <h5>Password</h5>
+                <div>
+                    <form action="/settings/password" method="post">
+                        <div class="form-group">
+                            <label for="password">New Password</label>
+                            <input type="password" class="form-control" id="password" name="password" >
+                        </div>
+                        <div class="form-group">
+                            <label for="re-password">Re-type New Password</label>
+                            <input type="password" class="form-control" id="re-password" name="re_password"  >
+                        </div>
+                        <div class="form-group" style="padding: 0 20px;">
+                            <input type="checkbox" class="form-check-input" id="logout" name="logout"  >
+                            <label class="form-check-label" for="logout">Log out of all other sessions after resetting password</label>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </form>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="profile"role="tabpanel">
+                <h5>Profile</h5>
+
+                <form action="/settings/profile" method="post" enctype="multipart/form-data" style="padding: 10px">
+                    <div class="form-group avatar">
+                        <label>Avatar</label>
+                        <div class="avatar-container">
+                            <div class="placeholder avatar-80">
+                                <img src="<%=user.imgUrl%>" width="80" id="jsid-profile-avatar">
+                            </div>
+                        </div>
+                        <div class="control">
+                            <input type="file" name="photo" onchange="previewFile()" >
+                            <p class="tips">JPG, GIF or PNG, Max size: 2MB</p>
+                            <a href="" id="jsid-random-avatar-btn" data-max="182" data-path="https://accounts-cdn.9gag.com/media/default-avatar/1_%random%_100_v0.jpg">Random</a>
+                        </div>
+                        <div class="clearfix"></div>
+
+                    </div>
+                    <div class="form-group">
+                        <label>Your Name</label>
+                        <input type="text" class="form-control" name="name" value="<%=user.name%>">
+                        <small class="form-text text-muted">This is the name that will be visible to other users on 9GAG.</small>
+                    </div>
+                    <div class="form-group">
+                        <label>Status</label>
+                        <select class="form-control" name="status" style="width: 40%">
+                            <option>None</option>
+                            <option>On</option>
+                            <option>Off</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Gender</label>
+                        <select class="form-control" name="gender"  style="width: 40%">
+                            <option>Select Gender...</option>
+                            <option value="F" <%if(user.gender=="F"){%>selected<%}%>>Female</option>
+                            <option value="M" <%if(user.gender=="M"){%>selected<%}%>>Male</option>
+                            <option value="X" <%if(user.gender=="X"){%>selected<%}%>>Unspecified</option>
+                        </select>
+                    </div>
+                    <div class="form-group" >
+                        <label for="birthday">Birthday</label>
+                        <div class="input-group">
+                            <%if(user.birthday!=null&&user.birthday!='undefined'){%>
+                            <input type="number" class="form-control"  name="date_year" min="1950" max="2018" value="<%=user.birthday.getFullYear()%>">
+                            <input type="number" class="form-control"  name="date_mounth" min="1" max="12"  value="<%=user.birthday.getMonth()%>">
+                            <input type="number" class="form-control"  name="date_day" min="1" max="31" value="<%=user.birthday.getDate()%>">
+                            <%}else{%>
+                            <input type="number" class="form-control"  name="date_year" min="1950" max="2018" value="" >
+                            <input type="number" class="form-control"  name="date_mounth" min="1" max="12"  value="" >
+                            <input type="number" class="form-control"  name="date_day" min="1" max="31" value="" >
+                             <%}%>
+                        </div>
+                       </div>
+                    <div class="form-group">
+                        <label>Country</label>
+                        <select class="form-control" name="country"  style="width: 40%">
+                            <option>Select Country...</option>
+                            <option>Turkey</option>
+                        </select>
+                        <small class="form-text text-muted">Tell us where you're from so we can provide better service for you.</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Tell people who you are</label>
+                        <textarea type="text" class="form-control" name="about" placeholder="My Funny Collection" ><%=user.about%></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Social Networks</label>
+                        <div class="alert alert-dark" >
+                            <strong>Facebook</strong>
+                            <a style="float: right;" href="#">Disconnect</a>
+                        </div>
+
+                        <div class="alert alert-dark" >
+                            <strong>Google</strong>
+                            <a style="float: right;" href="#">Disconnect</a>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                       <label> Your 9GAG Data</label>
+                        <small class="form-text text-muted">You can request a PDF with your 9GAG data. We’ll send it to your email once ready.</small>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function previewFile() {
+        var preview = document.getElementById('jsid-profile-avatar');
+        var file    = document.querySelector('input[type=file]').files[0];
+        var reader  = new FileReader();
+
+        reader.onloadend = function () {
+            preview.src = reader.result;
+        }
+
+        if (file) {
+            reader.readAsDataURL(file);
+        } else {
+            preview.src = "";
+        }
+    }
+</script>
+
+<style>
+    .nav-left>a{
+        font-size: 18px;
+    }
+</style>
+
+
+<script>
+    var url = window.location.href;
+    if (url.indexOf("#") > 0){
+        var activeTab = url.substring(url.indexOf("#") + 1);
+        $('.nav[role="tablist"] a[href="#'+activeTab+'"]').tab('show');
+    }
+</script>

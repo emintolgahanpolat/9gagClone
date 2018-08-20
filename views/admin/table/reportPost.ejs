@@ -1,0 +1,93 @@
+
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center  mb-4 border-bottom">
+    <h1 class="h2">Report Post</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb" style="background-color: white">
+                <li class="breadcrumb-item"><a href="#">Data</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Report Post</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+
+
+
+
+
+<div class="card">
+    <div class="card-header d-flex justify-content-between">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination m-0">
+                <%if(page>=1){%><li class="page-item"><a class="page-link" href='?page=<%=page%>'>Previous</a></li><%}%>
+                <%for(var i=0;i<=count/10;i++){%>
+                <%if(i>page-4&&i<page+4){%>
+                <li class="page-item <%if(page==i){%>active<%}%>"  ><a class="page-link" href='?page=<%=i+1%>'><%=i+1%></a></li>
+                <%}%>
+                <%}%>
+                <%if(page<count/10-1){%>
+                <li class="page-item"><a class="page-link" href="?page=<%=page+2%>">Next</a></li><%}%>
+            </ul>
+        </nav>
+        <h3 class="m-0"> </h3>
+    </div>
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-striped table-sm m-0">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Report User</th>
+                    <th>Report</th>
+                    <th>Report Date</th>
+                    <th>Photo</th>
+                    <th>User</th>
+                    <th>Descripe</th>
+                    <th>Up Vote</th>
+                    <th>Down Vote</th>
+                    <th>Tag</th>
+                    <th>Created at</th>
+                    <th>Cancel/Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                <%results.forEach(function (item) {  %>
+                <tr>
+                    <td><a href="/gag/<%=item._id%>" target="_blank" class="btn btn-sm btn-info"><i class="fa fa-info"></i></a></td>
+                    <td><%=item.userObject[0].username%></td>
+                    <td><%=item.report%></td>
+                    <td><%=item.createdAt.toDateString()%></td>
+                    <%if(item.imgUrl!=""){%>
+                    <td><img src="<%=item.postObject[0].imgUrl%>" onclick="imgViewModal(this)" width="28" height="28"></td>
+                    <%}else{%>
+                    <td>
+                        <video class="card-img-1" controls poster="<%=item.videoUrl%>" loop>
+                            <source src="<%=item.videoUrl%>" type="video/mp4">
+                        </video>
+                    </td>
+                    <%}%>
+                    <td><%=item.postObject[0].userObject[0].username%></td>
+                    <td><%=item.postObject[0].descripe%></td>
+                    <td><%=item.postObject[0].upVote%></td>
+                    <td><%=item.postObject[0].downVote%></td>
+                    <td><%=item.postObject[0].tag%></td>
+                    <td><%=item.postObject[0].createdAt.toDateString()%></td>
+                    <td>
+                        <div class="btn-group">
+                            <a href="/admin/reportPostCancel/<%=item._id%>" class="btn btn-sm btn-info text-white"><i class="fa fa-times"></i></a>
+                            <a href="/admin/reportPostDel/<%=item._id%>" class="btn btn-sm btn-danger text-white" onclick="return confirm('Are you sure delete <%=item.title%> post?')"><i class="fa fa-trash"></i></a>
+                        </div>
+                    </td>
+                </tr>
+                <%})%>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+</div>
+
+

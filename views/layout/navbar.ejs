@@ -1,0 +1,86 @@
+<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-deep-dark text-light p-1">
+    <div class="container">
+        <a class="navbar-brand text-light logo " href="/"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fa fa-bars text-light"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarMenu">
+            <ul class="navbar-nav mr-auto ">
+
+                <%navbarLinkList.forEach(function (value) { %>
+                <li class="nav-item active">
+                    <a class="nav-link nav-link-bar text-muted" href="<%=value.url%>"><%=value.title%><%if(value.state){%><span class="top-point"> </span><%}%></a>
+                </li>
+
+                <% })%>
+            </ul>
+
+            <nav class="my-2 my-md-0 mr-md-3" style="flex-wrap: nowrap">
+                <div class="dropdown" style="display: inline-block;">
+                    <button class="btn btn-link btn-sm text-muted" type="button" id="searchMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i style="font-size: 20px" class="fa fa-search"></i>
+                    </button>
+                    <form class="dropdown-menu dropdown-menu-right" action="/search" style="padding: 0px" aria-labelledby="searchMenu">
+                        <input class="form-control" id="searchInput" name="search" type="text"
+                               placeholder="Type to search ..."
+                               autocomplete="off"
+                               onkeyup="searchHome(this.value)">
+
+                        <div id="searchResults" class="list-group searchResults">
+
+                        </div>
+                    </form>
+
+
+
+                </div>
+                <%if(user==null){%>
+                <button type="button" class="btn btn-link btn-sm text-muted" href="#" data-toggle="modal" data-target="#logInModal">Log in</button>
+
+                <button type="button" class="btn btn-primary btn-sm" href="#" data-toggle="modal" data-target="#signUpModal">Sign up</button>
+
+                <%}else{%>
+                <div class="dropdown " style="display: inline-block;">
+                    <a class="btn btn-link btn-sm text-muted" id="notificationMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i style="font-size: 20px" class="fa fa-bell"></i>
+                    </a>
+
+                    <div class="dropdown-menu dropdown-menu-right notification-menu" aria-labelledby="notificationMenu">
+
+                        <div class="card">
+                            <div class="card-header">
+                               Activity
+                            </div>
+                            <div class="card-body" style="height: 350px">
+                                <div style="margin: auto">You don't have any notification yet.</div>
+                            </div>
+                            <div class="card-footer text-center">
+                                <a href="" class="">See All</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="dropdown " style="display: inline-block;">
+                    <a class=""  style="margin: 0px 12px;" id="userMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img class="navbar-img rounded-circle" src="<%=user.imgUrl%>">
+                    </a>
+
+                    <div class="dropdown-menu dropdown-menu-right " aria-labelledby="userMenu" >
+                        <%if(user.role){%><a class="dropdown-item" href="/admin">Admin Panel</a><%}%>
+                        <a class="dropdown-item" href="/u/<%=user.username%>">My Profile</a>
+                        <a class="dropdown-item" href="/settings">Settings</a>
+                        <a class="dropdown-item" href="/logout">Logout</a>
+
+                    </div>
+                </div>
+
+                <button type="button" class="btn btn-primary btn-sm" href="#" data-toggle="modal" data-target="#uploadModal"><i class="fa fa-plus"></i>  Upload</button>
+
+                <%}%>
+            </nav>
+        </div>
+    </div>
+</nav>
+

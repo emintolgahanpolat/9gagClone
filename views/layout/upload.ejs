@@ -1,0 +1,261 @@
+<!-- Upload Modal -->
+<div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="uploadModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content"  style="padding: 24px">
+            <div class="modal-header border-0">
+                <h3 class="modal-title" id="logInModal">Upload a Post</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="padding: 0px">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="padding-top: 0px;">
+                <p class="text-muted">Choose how you want to upload the post</p>
+
+                <div>
+                    <div class="card-deck">
+                        <div class="card text-center" style="height: 180px;margin: 3px;">
+                            <a style="margin: auto;" >
+                                <i class="fa fa-file-upload fa-5x" style="margin: 3px;"></i>
+                                <p style="margin: 3px;">Drop image to upload or</p>
+
+                                <label class="btn btn-primary btn-sm" for="postPhoto" style="margin: 3px;"> Choose files...</label>
+                                <input type="file" form="postImgUrl" id="postPhoto" name="photo" hidden onchange="isSelected()" accept="image/png, image/jpeg">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card-deck">
+                        <div class="card text-center upload_card">
+
+                            <a style="margin: auto" data-dismiss="modal" aria-label="Close" data-toggle="modal" data-target="#imgUrlModal">
+                                <i class="fa fa-image fa-3x"></i>
+                                <p> Paste image Url</p>
+                            </a>
+                        </div>
+                        <div class="card text-center upload_card">
+                            <a style="margin: auto">
+                                <i class="fa fa-video fa-3x"></i>
+                                <p> Paste video Url</p>
+                            </a>
+                        </div>
+                        <div class="card text-center upload_card">
+                            <a style="margin: auto">
+                                <i class="fa fa-wine-glass fa-3x"></i>
+                                <p> Make meme</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="imgUrlModal" tabindex="-1" role="dialog" aria-labelledby="imgUrlModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content"  style="padding: 24px">
+            <div class="modal-header border-0">
+                <h3 class="modal-title" id="logInModal">Upload from URL</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="padding: 0px">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body"  style="padding-top: 0px;">
+                <div id="imgUrlBody"></div>
+                <p class="text-muted">Type or paste Image URL</p>
+                <div class="form-group" style="margin-top: 36px">
+                    <input type="text"id="imgUrl" class="form-control" onkeyup="isEmpty()" placeholder="http://" style="padding: 16px;">
+                </div>
+
+            </div>
+            <div class="modal-footer border-0 btn-group">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close" data-toggle="modal" data-target="#uploadModal">Back</button>
+                <button type="button" id="nextBtn" class="btn btn-primary" disabled onclick="testImage(record)">Next</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="imgPost" tabindex="-1" role="dialog" aria-labelledby="imgPostLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div  class="modal-content"  style="padding: 24px">
+            <div class="modal-header border-0">
+                <h3 class="modal-title" id="logInModal">Give your post a title</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="padding: 0px">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body"  style="padding-top: 0px;padding-bottom: 0px;">
+
+                <p class="text-muted">An accurate, descriptive title can help people discover your post.</p>
+                <div class="input-group" style="margin-top:3px ">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" style="background: transparent;padding: 0px !important;" id="basic-addon3">
+                            <img id="imgShow" class="imgShow" src="">
+                            <input type="text" form="postImgUrl" id="imgInput" name="imgUrl" hidden>
+                        </span>
+                   </div>
+                    <textarea class="form-control" form="postImgUrl" name="dascribe" placeholder="Describe your post..." aria-label="With textarea"></textarea>
+                </div>
+
+                <div class="form-group" style="margin-top: 8px">
+
+                    <span>Tag </span>
+                    <input type="text" class="form-group" form="postImgUrl" name="tag" placeholder="tag1, tag2, tag3" data-role="tagsinput" style="display: none;">
+
+                </div>
+
+                <div class="form-group">
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" name="sensitive" class="custom-control-input" id="sensitive">
+                        <label class="custom-control-label" form="postImgUrl" style="font-weight:normal" for="sensitive">This is sensitive</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" name="attribute" class="custom-control-input" id="attribute">
+                        <label class="custom-control-label" form="postImgUrl" style="font-weight:normal" for="attribute">Attribute original poster</label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer border-0 btn-group" style="padding-top: 0px;">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close" data-toggle="modal" data-target="#uploadModal">Back</button>
+                <button type="button"  class="btn btn-primary"  data-dismiss="modal" aria-label="Close" data-toggle="modal" data-target="#selectSectionModal" >Next</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="selectSectionModal" tabindex="-1" role="dialog" aria-labelledby="selectSectionModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="padding: 24px">
+            <div class="modal-header border-0">
+                <h3 class="modal-title" id="selectSectionModalLabel">Pick a section</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="padding: 0px">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="margin-top: 8px" >
+                <p class="text-muted">An accurate, descriptive title can help people discover your post.</p>
+                <form action="/postImgUrl" id="postImgUrl" method="post" enctype="multipart/form-data">
+                    <ul class="card" style="padding: 0px;max-height: 400px;overflow: scroll">
+
+                        <%sectionList.forEach(function (item) {%>
+                        <li>
+                            <label  for="<%=item.title%>" class="media section-list-radio" >
+                                <div class="pull-left">
+                                    <img style="width: 50px;height: 50px" src="<%=item.icon%>">
+                                </div><!-- / icon -->
+                                <div class="media-body" style="margin: 0 12px">
+                                    <h4 class="title" style="margin: 0px;"><%=item.title%></h4>
+                                    <small class="summary text-muted"><%=item.subTitle%></small>
+                                </div>
+                                <input class="align-self-center" type="radio" id="<%=item.title%>" name="sectionId" style="float: right;" value="<%=item._id%>">
+                            </label>
+                        </li>
+                        <% })%>
+
+                    </ul>
+                </form>
+            </div>
+            <div class="modal-footer border-0 btn-group" style="padding-top: 0px;">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close" data-toggle="modal" data-target="#imgPost">Back</button>
+                <button type="submit" form="postImgUrl" class="btn btn-primary">Post</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<style>
+    .imgShow{
+        width: 120px;
+        max-height: 150px;
+    }
+</style>
+<script type="text/javascript">
+
+    function stopRKey(evt) {
+        var evt = (evt) ? evt : ((event) ? event : null);
+        var node = (evt.target) ? evt.target : ((evt.srcElement) ? evt.srcElement : null);
+        if ((evt.keyCode == 13) && (node.type=="text"))  {return false;}
+    }
+
+    document.onkeypress = stopRKey;
+
+</script>
+<script>
+    function isEmpty() {
+        var x = document.getElementById("imgUrl").value;
+        if(x.length>0){
+            console.log("1")
+            document.getElementById("nextBtn").disabled = false;
+        }else {
+            console.log("2")
+            document.getElementById("nextBtn").disabled = true;
+        }
+
+    }
+
+    function testImage(callback, timeout) {
+        var url=document.getElementById("imgUrl").value;
+        timeout = timeout || 5000;
+        var timedOut = false, timer;
+        var img = new Image();
+        img.onerror = img.onabort = function() {
+            if (!timedOut) {
+                clearTimeout(timer);
+                callback(url, "Unsupported type.");
+            }
+        };
+        img.onload = function() {
+            if (!timedOut) {
+                clearTimeout(timer);
+                callback(url, "success");
+            }
+        };
+        img.src = url;
+        timer = setTimeout(function() {
+            timedOut = true;
+            callback(url, "timeout");
+        }, timeout);
+    }
+
+    function record(url, result) {
+        if(result!="success") {
+            document.getElementById("imgUrlBody").innerHTML = '<div class="alert alert-danger" role="alert">' + result + ' </div>';
+        }
+        else{
+            $('#imgUrlModal').modal('hide')
+            $('#imgPost').modal('show')
+            document.getElementById("imgShow").src=url
+            document.getElementById("imgInput").value=url;
+        }
+    }
+
+
+    function isSelected() {
+
+        var preview = document.getElementById('imgShow');
+        var file    =  document.getElementById("postPhoto").files[0];
+        var reader  = new FileReader();
+
+        reader.onloadend = function () {
+            preview.src = reader.result;
+        }
+
+        if (file) {
+            reader.readAsDataURL(file);
+            $('#uploadModal').modal('hide')
+            $('#imgPost').modal('show')
+        } else {
+            alert("Error! Don't selected image")
+        }
+
+    }
+</script>
+
+

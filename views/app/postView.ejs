@@ -1,0 +1,75 @@
+<%if(item.imgUrl!=""){%>
+
+<a href="/gag/<%=item._id%>" class="nounderline " >
+    <h5 class="font-weight-bold text-dark"> <%=item.descripe%></h5>
+    <div class="post-view" style="width: 80%" >
+        <img class="card-img-1" style="width: 100%;"  src="<%=item.imgUrl%>" alt="Card image cap">
+
+    </div>
+    <div class="" style="padding: 6px 0" >
+        <a href="/" class="text-muted" id="points<%=item._id%>"><%=item.upVote.length-item.downVote.length%> points</a>
+        <a href="/" class="text-muted">45 comments</a>
+    </div>
+
+    <div class="" style="padding: 6px 0" >
+
+        <a  class="btn btn-light" <%if(user==null){%>href="#" data-toggle="modal" data-target="#signUpModal"<%}else{%>  onclick="upVote('<%=item._id%>','<%=item.upVote.length-item.downVote.length%>')" <%}%>><i class="fa fa-arrow-up"></i></a>
+        <a  class="btn btn-light" <%if(user==null){%>href="#" data-toggle="modal" data-target="#signUpModal"<%}else{%>  onclick="downVote('<%=item._id%>','<%=item.upVote.length-item.downVote.length%>')"<%}%>><i class="fa fa-arrow-down"></i></a>
+        <a href="/gag/<%=item._id%>" class="btn btn-light"><i class="fa fa-comment"></i></a>
+        <a  class="btn btn-light" href="#" role="button" id="shareMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-share"></i></a>
+
+        <div class="dropdown-menu" aria-labelledby="shareMenu">
+            <a class="dropdown-item"  href='http://www.facebook.com/share' target="_blank">Facebook</a>
+            <a class="dropdown-item"  href="https://twitter.com/share" target="_blank">Twitter</a>
+            <a class="dropdown-item" href="#">Email</a>
+            <a class="dropdown-item" href="https://api.whatsapp.com/send?text=localhost:3000/gag/<%=item._id%>" target="_blank">Whatsapp</a>
+
+
+
+
+
+
+
+        </div>
+
+    </div>
+</a>
+
+<div class="dropdown-divider"></div>
+<% }else{%>
+
+<div class="" >
+    <a href="/gag/<%=item._id%>" class="nounderline"><h5 class="font-weight-bold text-dark"><%=item.descripe%></h5></a>
+    <video class="card-img-1" controls poster="<%=item.videoUrl%>" loop>
+        <source src="<%=item.videoUrl%>" type="video/mp4">
+    </video>
+
+    <div class="" style="padding: 6px 0" >
+        <a href="/" class="text-muted" >1,678 points</a>
+        <a href="/" class="text-muted">56 comments</a>
+    </div>
+
+    <div class="" style="padding: 6px 0" >
+
+        <a  class="btn btn-light" <%if(user==null){%>href="#" data-toggle="modal" data-target="#signUpModal"<%}else{%>onclick="upVote('<%=item._id%>')" <%}%>><i class="fa fa-arrow-up"></i></a>
+        <a  class="btn btn-light" <%if(user==null){%>href="#" data-toggle="modal" data-target="#signUpModal"<%}else{%>onclick="downVote('<%=item._id%>')"<%}%>><i class="fa fa-arrow-down"></i></a>
+        <a href="/gag/<%=item._id%>" class="btn btn-light"><i class="fa fa-comment"></i></a>
+        <a  class="btn btn-light" href="#" role="button" id="shareMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-share"></i></a>
+
+        <div class="dropdown-menu" aria-labelledby="shareMenu">
+            <a class="dropdown-item" href="#">Facebook</a>
+            <a class="dropdown-item" href="#">Twitter</a>
+            <a class="dropdown-item" href="#">Email</a>
+            <a class="dropdown-item" href="#">Google+</a>
+            <a class="dropdown-item" href="#">Report</a>
+        </div>
+
+    </div>
+</div>
+
+<div class="dropdown-divider"></div>
+
+
+<%}%>

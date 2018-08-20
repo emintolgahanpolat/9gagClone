@@ -1,0 +1,144 @@
+
+<ul class="list-group sidebar-sticky"  style="max-height: 750px;
+    margin-bottom: 10px;
+    overflow:scroll;
+    -webkit-overflow-scrolling: touch;">
+    <!--POPULAR-->
+    <li class="list-group-item border-0 font-weight-bold text-muted" style="font-size: 12px">POPULAR</li>
+    <li class="list-group-item border-0">
+        <a href="/hot" class="text-dark font-weight-bold font-14"><i class="fa fa-fire "></i>
+            Hot
+        </a>
+    </li>
+    <li class="list-group-item border-0">
+        <a href="/trending" class="text-dark font-weight-bold font-14"><i class="fa fa-chart-line"></i>
+            Trending
+        </a>
+    </li>
+    <li class="list-group-item border-0">
+        <a href="/fresh" class="text-dark font-weight-bold font-14"><i class="fa fa-clock"></i>
+            Fresh
+        </a>
+    </li>
+
+    <!--FAVORITES-->
+    <li class="list-group-item border-0 font-weight-bold text-muted" style="font-size: 12px">FAVORITES</li>
+    
+    <li class="list-group-item border-0 p-0" >
+        <ul class="list-group" id="favList">
+            <li>
+                <a href="/funny" class="text-dark font-14">
+                    <i class="thumbnail">
+                        <img class="rounded" src="https://miscmedia-9gag-fun.9cache.com/images/thumbnail-facebook/1481536354.227_YsUzaZ_100x100.jpg">
+                    </i>
+                    😂 Funny
+                </a>
+                <a href="/" class="fav-btn fav font-14 float-right"><i class="fa fa-star"></i></a>
+            </li>
+        </ul>
+    </li>
+
+    <!--SECTIONS-->
+    <li class="list-group-item border-0 font-weight-bold text-muted" style="font-size: 12px">SECTIONS</li>
+
+    <li class="list-group-item border-0 p-0" >
+        <ul class="list-group" id="sectionList">
+        </ul>
+    </li>
+</ul>
+
+
+
+
+
+<script>
+
+
+
+
+    var favList=getCookie("favList").split(",")
+    console.log(favList)
+    function favSection(id) {
+
+        favList.push(id)
+        setCookie("favList", favList, 30);
+        favMenu()
+
+    }
+    function unFavSection(id) {
+        if ( favList.indexOf(id) !== -1) favList.splice(favList.indexOf(id), 1);
+        setCookie("favList", favList, 30);
+        favMenu()
+
+    }
+
+
+    favMenu()
+    function favMenu() {
+        if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        } else {  // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("favList").innerHTML = "";
+                document.getElementById("sectionList").innerHTML = "";
+                for (index in JSON.parse(this.responseText)) {
+                    var li = document.createElement("li");
+                    li.className="list-group-item border-0";
+                    var a = document.createElement("a");
+                    a.href="/"+JSON.parse(this.responseText)[index].title;
+                    a.className="text-dark font-14"
+                    var i = document.createElement("i");
+                    i.className="thumbnail";
+                    var img = document.createElement("img");
+                    img.className="rounded";
+                    img.src=JSON.parse(this.responseText)[index].icon;
+                    var span = document.createElement("span");
+                    span.innerHTML="  "+JSON.parse(this.responseText)[index].name;
+                    i.appendChild(img);
+                    a.appendChild(i);
+                    a.appendChild(span);
+                    li.appendChild(a);
+
+
+                    if (favList.indexOf(JSON.parse(this.responseText)[index]._id)!=-1)
+                    {
+                        var favA = document.createElement("a");
+                        favA.className="fav-btn-active font-14 float-right"
+                        favA.setAttribute("onClick","unFavSection('"+JSON.parse(this.responseText)[index]._id+"')");
+                        var favI = document.createElement("i");
+                        favI.className="fa fa-star";
+                        favA.appendChild(favI);
+                        li.appendChild(favA);
+                        document.getElementById("favList").appendChild(li);
+                    }
+                    else{
+                        var favA = document.createElement("a");
+                        favA.className="fav-btn font-14 float-right"
+                        favA.setAttribute("onClick","favSection('"+JSON.parse(this.responseText)[index]._id+"')");
+                        var favI = document.createElement("i");
+                        favI.className="fa fa-star";
+                        favA.appendChild(favI);
+                        li.appendChild(favA);
+                        document.getElementById("sectionList").appendChild(li);
+                    }
+                }
+            }
+        }
+
+        xmlhttp.open("GET", "/sectionList", true);
+        xmlhttp.send();
+
+    }
+</script>
+
+
+
+<style>
+    .list-group-item>a{
+        text-decoration: none;
+    }
+</style>

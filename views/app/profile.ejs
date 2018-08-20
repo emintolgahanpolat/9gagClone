@@ -1,0 +1,47 @@
+<div class="row">
+    <div class="col-lg-8 col-md-7 col-sm-12">
+
+
+        <div class="profile">
+            <section class="profile-header">
+
+                <div class="img-container round">
+                    <img class="rounded-circle" src="<%=profile.imgUrl%>"  alt="Generic placeholder image">
+
+                </div>
+                <header>
+                    <h2><%=profile.name%></h2>
+                    <p class="text-muted"><%=profile.about%></p>
+                </header>
+
+            </section>
+
+            <div class="tab">
+                <ul class="nav nav-tabs" style="flex-wrap: nowrap">
+                    <li class="nav-item">
+                        <a class="nav-link nav-tab-link <%if(title=='overview'){%>active<%}%>" href="/u/<%=profile.username%>">Overview</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-tab-link <%if(title=='posts'){%>active<%}%>" href="/u/<%=profile.username%>/posts">Posts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-tab-link <%if(title=='likes'){%>active<%}%>" href="/u/<%=profile.username%>/likes">Upvotes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-tab-link <%if(title=='comments'){%>active<%}%>" href="/u/<%=profile.username%>/comments">Comments</a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+
+        <%results.forEach(function (item) {%>
+        <%include postView.ejs%>
+        <% })%>
+
+
+    </div>
+    <div class="col-lg-4 col-5 d-none d-lg-block "><%include ../layout/sidebarRight.ejs%></div>
+</div>
+

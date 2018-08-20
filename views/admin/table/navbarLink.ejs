@@ -1,0 +1,93 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center  mb-4 border-bottom">
+    <h1 class="h2">Navbar Link</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb" style="background: white;">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Navbar Link </li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+
+
+
+<div class="card">
+    <div class="card-header d-flex justify-content-between ">
+        <h3 class="m-0">Navbar Link </h3>
+
+        <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#sectionModal">Add Navbar Link</a>
+    </div>
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-striped table-sm m-0">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Title</th>
+                    <th>Url</th>
+                    <th>New</th>
+                    <th>Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                <%results.forEach(function (item,i) {  %>
+                <tr>
+                    <td><%=i+1%></td>
+                    <td><%=item.title%></td>
+                    <td><%=item.url%></td>
+                    <td><%=item.state%></td>
+                    <td>
+                        <div class="btn-group">
+                            <a href="/admin/navbarLinkDel/<%=item._id%>" class="btn btn-sm btn-danger text-white" onclick="return confirm('Are you sure del <%=item.title%> link?')"><i class="fa fa-trash"></i></a>
+                        </div>
+                    </td>
+                </tr>
+                <%})%>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="sectionModal" tabindex="-1" role="dialog" aria-labelledby="sectionModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="sectionModalLabel">Add Navbar Link</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="/admin/navbarLink" method="post">
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input type="text" class="form-control" id="title" name="title" placeholder="Title">
+                    </div>
+                    <div class="form-group">
+                        <label for="url">Url</label>
+                        <input type="text" class="form-control" id="url" name="url" placeholder="Url">
+                    </div>
+                   <div class="form-group">
+                       <div class="custom-control custom-checkbox">
+                           <input type="checkbox" name="state" id="state" class="custom-control-input" >
+                           <label class="custom-control-label" for="state">State</label>
+                       </div>
+                   </div>
+
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+

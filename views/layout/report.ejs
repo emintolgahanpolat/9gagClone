@@ -1,0 +1,73 @@
+
+
+<div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="reportModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content"  style="padding: 24px">
+            <div class="modal-header border-0">
+                <h1 class="modal-title" id="reportModalLabel">Report</h1>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="padding: 0px">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="padding-top: 0px;">
+                <p class="text-muted">Choosing the right reason help us process the report as soon as possible.</p>
+
+                <form action="/report/<%=results._id%>" id="reportForm" method="post">
+                    <ul class="card mt-4" style="padding: 0px;max-height: 400px;overflow: scroll">
+
+
+                        <li>
+                            <label  for="a" class="my-auto section-list-radio d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center  mb-4 " >
+                                <h6 class="title" style="margin: 0px;">Spam</h6>
+                                <input class="" form="reportForm" type="radio" id="a" name="report" value="Spam">
+                            </label>
+                        </li>
+
+                        <li>
+                            <label  for="b" class="my-auto section-list-radio d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center  mb-4 " >
+                                <h6 class="title" style="margin: 0px;">Pornography</h6>
+                                <input class="" form="reportForm" type="radio" id="b" name="report" value="Pornography">
+                            </label>
+                        </li>
+
+                    </ul>
+                </form>
+            </div>
+            <div class="modal-footer border-0 btn-group" style="padding-top: 0px;">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close">Cancel</button>
+                <button type="submit" form="reportForm" class="btn btn-danger">Report</button> </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="reportAboutModal" tabindex="-1" role="dialog" aria-labelledby="reportAboutModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content"  style="padding: 24px">
+            <div class="modal-header border-0">
+                <h1 class="modal-title" id="reportAboutModalLabel">Report</h1>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="padding: 0px">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="padding-top: 0px;">
+                <p class="text-muted" style="font-size: 14px">Choosing the right reason help us process the report as soon as possible.</p>
+                <div class="border p-3 mt-2 text-muted" style="font-size: 14px">
+                    <p>What can I do if I see something I don't like on 9GAG?</p>
+                    <ul>
+                        <li>Report it if it doesn't follow 9GAG rules.</li>
+                        <li>Downvote it to decide which posts/comments can go viral.</li>
+                    </ul>
+                    <p>If you report someone's post, 9GAG doesn't tell them who reported it.</p>
+                </div>
+            </div>
+            <div class="modal-footer border-0 btn-group" style="padding-top: 0px;">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close" data-toggle="modal" data-target="#reportModal">Back</button>
+                <button type="submit" form="reportForm" class="btn btn-danger">Report</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

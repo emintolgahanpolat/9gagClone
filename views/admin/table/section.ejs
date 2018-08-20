@@ -1,0 +1,133 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center  mb-4 border-bottom">
+    <h1 class="h2">Section</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb" style="background: white;">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Section</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+
+
+<style>
+    input{
+        background: transparent;
+        border: 2px solid transparent;
+    }
+</style>
+
+
+
+<div class="card">
+    <div class="card-header d-flex justify-content-between   ">
+
+
+        <nav aria-label="Page navigation example">
+            <ul class="pagination m-0">
+
+                <%if(page>=1){%><li class="page-item"><a class="page-link" href='?page=<%=page%>'>Previous</a></li><%}%>
+                <%for(var i=0;i<=count/10;i++){%>
+                <%if(i>page-3&&i<page+3){%>
+                <li class="page-item <%if(page==i){%>active<%}%>"  ><a class="page-link" href='?page=<%=i+1%>'><%=i+1%></a></li>
+                <%}%>
+                <%}%>
+                <%if(page<count/10-1){%>
+                <li class="page-item"><a class="page-link" href="?page=<%=page+2%>">Next</a></li><%}%>
+            </ul>
+        </nav>
+
+
+
+        <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#sectionModal">Add Section</a>
+    </div>
+
+    <div class="card-body p-0">
+        <div class="table-responsive ">
+            <table class="table table-striped table-sm m-0">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Icon</th>
+                    <th>Name</th>
+                    <th>Title</th>
+                    <th>SubTitle</th>
+                    <th>Edit/Del</th>
+                </tr>
+                </thead>
+                <tbody>
+                <%results.forEach(function (item,i) {  %>
+                <form action="/sectionEdit/<%=item._id%>" method="post">
+                    <tr>
+                        <td><%=i+1%></td>
+                        <td><img src="<%=item.icon%>" onclick="imgViewModal(this)"  width="28" height="28"></td>
+                        <td><input id="<%=item._id%>" type="text" value="<%=item.name%>" readonly></td>
+                        <td><%=item.title%></td>
+                        <td><%=item.subTitle%></td>
+                        <td>
+                            <div class="btn-group">
+                                <a href="/admin/sectionEdit/<%=item._id%>" class="btn btn-sm btn-warning text-white"><i class="fa fa-edit"></i></a>
+                                <a href="/admin/sectionDel/<%=item._id%>" class="btn btn-sm btn-danger text-white" onclick="return confirm('Are you sure block <%=item.title%> user?')"><i class="fa fa-trash"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                </form>
+                <%})%>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="sectionModal" tabindex="-1" role="dialog" aria-labelledby="sectionModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="sectionModalLabel">Add Section</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="/admin/section" method="post">
+                    <div class="form-group">
+                        <label for="name">Section Name</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Enter Section Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input type="text" class="form-control" id="title" name="title" placeholder="Enter Title">
+                    </div>
+                    <div class="form-group">
+                        <label for="subTitle">Sub Title</label>
+                        <input type="text" class="form-control" id="subTitle" name="subTitle" placeholder="Sub Title">
+                    </div>
+                    <div class="form-group">
+                        <label for="icon">Icon</label>
+                        <input type="text" class="form-control" id="icon" name="icon" placeholder="Image Url">
+
+                        <div class="img-container placeholder avatar-80 img-container">
+                            <img src="" width="80" id="jsid-profile-avatar">
+                        </div>
+
+                        <div class="" style="margin-top: 6px">
+
+                            <input type="file" name="file" onchange="previewFile()" accept=".jpg, .gif, .png">
+                            <p class="tips">JPG, GIF or PNG, Max size: 2MB</p>
+                            <input type="hidden" name="default_avatar">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+

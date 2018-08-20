@@ -1,0 +1,62 @@
+<div class="row" >
+    <div class="col-lg-8 col-md-7 col-sm-12">
+
+        <div class="" style="margin-bottom:12px">
+
+
+            <%if(typeof tags != "undefined"){%>
+            <%tags.forEach(function (item) { %>
+            <a href="/tag/<%=item._id%>" class="btn btn-light"><%=item._id%></a>
+            <% })%>
+            <%}%>
+
+        </div>
+
+
+        <%results.forEach(function (item) {%>
+            <%include postView.ejs%>
+        <% })%>
+
+
+
+    </div>
+    <div class="col-lg-4 col-5 d-none d-lg-block "><%include ../layout/sidebarRight.ejs%></div>
+</div>
+
+<style>
+
+    .post-view{text-align: center;width: 80%;cursor: pointer}
+    .video-post {
+        cursor: pointer;
+    }
+
+    .video-post, .youtube-post {
+        overflow: hidden;
+        position: relative;
+    }
+    .video-post span.play, .youtube-post span.play {
+        position: absolute;
+        top: 50%;
+        margin-top: -36px;
+        left: 50%;
+        margin-left: -36px;
+        height: 72px;
+        width: 72px;
+        text-indent: -999px;
+        overflow: hidden;
+        border-radius: 35px;
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+    .video-post span.play:after, .youtube-post span.play:after {
+        content: '';
+        width: 60px;
+        height: 60px;
+        background: url(https://assets-9gag-fun.9cache.com/s/fab0aa49/0cc49c3aa7bfd056e1a662e3e269d9cca96afc36/static/dist/web6/img/icon-video-play-3.png) center center no-repeat;
+        background-size: 60px 60px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-left: -30px;
+        margin-top: -30px;
+    }
+</style>
